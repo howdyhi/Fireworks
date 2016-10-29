@@ -8,7 +8,6 @@
             var mycanvas = document.getElementById('mycanvas');
             ctx = mycanvas.getContext('2d');
             
-            //list=[];
             mycanvas.addEventListener('mousedown',onmousedown);
 
             
@@ -22,6 +21,7 @@
                 this.vx;
                 this.vy;
                 this.g=9.8;
+                //this.g=-2;
                 
                 this.randomInit = function(){
                     var r=Math.floor(Math.random()*255);
@@ -30,8 +30,23 @@
                     var color="rgb("+r+","+g+","+b+")";
                     this.color=color;
                     
-                    this.vx=Math.floor((Math.random()*1000)-500); //-500~500
-                    this.vy=Math.floor((Math.random()*1000)-500);//-500~500
+                    //this.vx=Math.floor((Math.random()*1000)-500); //-500~500
+                    //this.vy=Math.floor((Math.random()*1000)-500);//-500~500
+                    
+                    //this.vx=Math.floor((Math.random()*300)-150); //-500~500
+                    //this.vy=Math.floor((Math.random()*300)-150);//-500~500
+                    
+                    /*this.vx=10/5;
+                    this.vy=-25/5;*/
+                    
+                    //this.vx=5;
+                    //this.vy=5;
+                    
+                    this.vx=-10+Math.random()*20;
+                    this.vy=-10+Math.random()*15;
+                    
+                    //this.vx=-5+Math.random()*10;
+                    //this.vy=Math.random()*10;
 
                 };
                 this.randomInit();
@@ -66,26 +81,21 @@
             var t=0;
             
             setInterval(function(){
-                //
-                console.log(stop);
                 if(!stop){
                     for(var i=0; i<100; i++){
                         list[i].draw();
                         list[i].move(t);
 
                     }
-                    t+=0.1;
+                    t+=0.05;
                     console.log("t: "+t);
-                    if(t>=1){
+                    if(t>=2){
                         ctx.clearRect(0,0,1393,697);
-                        console.log("t=10");
-                        //this.list.remove();
                         stop=true;
 
                     }
                 }
-                //
-            },50);
+            },15);//speed
             
             
         }
