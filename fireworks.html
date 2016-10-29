@@ -1,85 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <script>
-        window.onload = function(){
+        window.onload = function () {
             var mycanvas = document.getElementById('mycanvas');
             ctx = mycanvas.getContext('2d');
-            
-            mycanvas.addEventListener('mousedown',onmousedown);
+            mycanvas.addEventListener('mousedown', onmousedown);
         };
-        function Ball(x,y)
-            {
-                this.x=x;
-                this.y=y;
-                this.r=2;
-                this.color;
-                this.vx;
-                this.vy;
-                this.g=9.8;
-                
-                this.randomInit = function(){
-                    var r=Math.floor(Math.random()*255);
-                    var g=Math.floor(Math.random()*255);
-                    var b=Math.floor(Math.random()*255);
-                    var color="rgb("+r+","+g+","+b+")";
-                    this.color=color;
 
-                    this.vx=-10+Math.random()*20;
-                    this.vy=-12+Math.random()*17;
+        function Ball(x, y) {
+            this.x = x;
+            this.y = y;
+            this.r = 2;
+            this.color;
+            this.vx;
+            this.vy;
+            this.g = 9.8;
+            this.randomInit = function () {
+                var r = Math.floor(Math.random() * 255);
+                var g = Math.floor(Math.random() * 255);
+                var b = Math.floor(Math.random() * 255);
+                var color = "rgb(" + r + "," + g + "," + b + ")";
+                this.color = color;
+                this.vx = -10 + Math.random() * 20;
+                this.vy = -12 + Math.random() * 17;
+            };
+            this.randomInit();
+            this.draw = function () {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+            this.move = function (t) {
+                //S=V0t+1/2gt^2
+                this.x += this.vx * t;
+                this.y += this.vy * t + (this.g * t * t) / 2;
+            }
+            this.draw();
+        };
 
-                };
-                this.randomInit();
-                
-                this.draw = function(){
-                        ctx.fillStyle=this.color;
-                        ctx.beginPath();
-                        ctx.arc(this.x, this.y,this.r,0,Math.PI*2);
-                        ctx.closePath();
-                        ctx.fill();
-                    }
-                    
-                this.move=function(t)
-                {
-                    //S=V0t+1/2gt^2
-                    this.x+=this.vx*t;
-                    this.y+=this.vy*t+(this.g*t*t)/2;
-                }
-                this.draw();
-                };
-                           
-        function onmousedown(e)
-        {
+        function onmousedown(e) {
             var list = new Array();
-            
-            for(var i=0; i<100; i++)//generate 100 balls
+            for (var i = 0; i < 100; i++) //generate 100 balls
                 list.push(new Ball(event.x, event.y));
-
-            var stop=false;
-            var t=0;
-            
-            setInterval(function(){
-                if(!stop){
-                    for(var i=0; i<100; i++){
+            var stop = false;
+            var t = 0;
+            setInterval(function () {
+                if (!stop) {
+                    for (var i = 0; i < 100; i++) {
                         list[i].draw();
                         list[i].move(t);
                     }
-                    t+=0.05;
-                    if(t>=1.7&&t<=1.9){
-                        ctx.clearRect(0,0,1393,697);
+                    t += 0.05;
+                    if (t >= 1.7 && t <= 1.9) {
+                        ctx.clearRect(0, 0, 1393, 697);
                     }
-                    if(t>=2.1) {
-                        ctx.clearRect(0,0,1393,697);
-                        stop=true;
+                    if (t >= 2.1) {
+                        ctx.clearRect(0, 0, 1393, 697);
+                        stop = true;
                     }
                 }
-            },15);//speed         
+            }, 15); //speed         
         }
     </script>
 </head>
+
 <body>
-    <canvas id="mycanvas" width="1393" height="697" style="background-color:black"></canva/s>
+    <canvas id="mycanvas" width="1393" height="697" style="background-color:black">
+        </canva/s>
 </body>
+
 </html>
