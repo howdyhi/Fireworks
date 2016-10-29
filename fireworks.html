@@ -33,13 +33,15 @@
                 this.color;
                 this.vx;
                 this.vy;
+                this.g=9.8;
+                //this.t=0;//
                 
                 this.randomInit = function(){
                     var r=Math.floor(Math.random()*255);
                     var g=Math.floor(Math.random()*255);
                     var b=Math.floor(Math.random()*255);
                     var color="rgb("+r+","+g+","+b+")";
-                    this.color=color;//
+                    this.color=color;
                     
                     this.vx=Math.floor((Math.random()*1000)-500); //-500~500
                     this.vy=Math.floor((Math.random()*1000)-500);//-500~500
@@ -48,27 +50,53 @@
                 this.randomInit();
                 
                 this.draw = function(){
+                    //this.t+=0.1;
                     //S=V0t+1/2gt^2
                     //var vx=50;//-500~500
                     //var vy=0;//-500~500
-                    var g=9.8;
+                    //var g=9.8;
                     //var x=v0*t;
                     //var y=-v0*t+0.5+g*t*t;
-                    for(var t=0; t<10;t+=0.1){
+                    //for(var t=0; t<1;t+=0.1){
                         ctx.fillStyle=this.color;
                         ctx.beginPath();
-                        ctx.arc(this.x+this.vx*t, this.y+this.vy*t+0.5*g*t*t,5,0,Math.PI*2);
+                        //ctx.arc(this.x+this.vx*t, this.y+this.vy*t+0.5*this.g*t*t,5,0,Math.PI*2);
+                        //ctx.arc(this.x+this.vx*this.t, this.y+this.vy*this.t+0.5*this.g*this.t*this.t,5,0,Math.PI*2);
+                        ctx.arc(this.x, this.y,this.r,0,Math.PI*2);
                         ctx.closePath();
                         ctx.fill();
+                    //}
+                    
+                    this.move=function(t)
+                    {
+                        //S=V0t+1/2gt^2
+                        //this.x+=this.vx*t;
+                        //this.y+=this.vy*t+(this.g*t*t)/2;
+                        this.x=this.x+this.vx*t;
+                        this.y=this.y+this.vy*t+(this.g*t*t)/2;
                     }
                 };
                 this.draw();
+                //this.move();
                 
             }
         function onmousedown(e)
         {
-            list.push(new Ball(event.x, event.y));
-            console.log("onmousedown()");
+            for(var i=0; i<100; i++)
+                list.push(new Ball(event.x, event.y));
+            
+            //for(var i=0; i<100; i++)
+            //setInterval(list[i].move(10), 32);
+            var t=0;
+            setInterval(function(){
+                for(var i=0; i<100; i++){
+                    list[i].draw();
+                    list[i].move(t);
+                    
+                }
+                t+=0.1;
+            },32);
+            
         }
         
     </script>
@@ -76,4 +104,4 @@
 <body>
     <canvas id="mycanvas" width="1393" height="697" style="border:1px solid #000000"></canvas>
 </body>
-</html>s
+</html>
