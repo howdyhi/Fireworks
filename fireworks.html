@@ -59,18 +59,34 @@
         {
             var list = new Array();
             
-            for(var i=0; i<100; i++)
+            for(var i=0; i<100; i++)//generate 100 balls
                 list.push(new Ball(event.x, event.y));
 
+            var stop=false;
             var t=0;
+            
             setInterval(function(){
-                for(var i=0; i<100; i++){
-                    list[i].draw();
-                    list[i].move(t);
-                    
+                //
+                console.log(stop);
+                if(!stop){
+                    for(var i=0; i<100; i++){
+                        list[i].draw();
+                        list[i].move(t);
+
+                    }
+                    t+=0.1;
+                    console.log("t: "+t);
+                    if(t>=1){
+                        ctx.clearRect(0,0,1393,697);
+                        console.log("t=10");
+                        //this.list.remove();
+                        stop=true;
+
+                    }
                 }
-                t+=0.1;
-            },32);
+                //
+            },50);
+            
             
         }
         
