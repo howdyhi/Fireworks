@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var mycanvas = document.getElementById('mycanvas');
+            var ctx = mycanvas.getContext('2d');
+            /*ctx.beginPath();
+            ctx.arc(150,150,5,0,Math.PI*2);
+            ctx.closePath();
+            ctx.fill();*/
+            
+            //y=0.5gt²=0.5g(x/Vo)²=(g/2Vo)x²
+            /*var g = 9.8;
+            var V0 = 20;
+            
+            for(var i=0;i<=50;i+=0.5){
+                ctx.beginPath();
+                var x = i;
+                var y = (g/(2*V0))*x*x;
+                ctx.arc(150+i, 150+y,5,0,Math.PI*2);
+                ctx.closePath();
+                ctx.fill();
+            }*/
+                
+
+            //S=V0t+1/2gt^2
+            var vx=50;//-500~500
+            var vy=0;//-500~500
+            var g=9.8;
+            //var x=v0*t;
+            //var y=-v0*t+0.5+g*t*t;
+            for(var t=0; t<10;t+=0.1){
+                ctx.beginPath();
+                ctx.arc(150+vx*t, 150+vy*t+0.5*g*t*t,5,0,Math.PI*2);
+                ctx.closePath();
+                ctx.fill();
+            }
+            
+        };
+        
+    </script>
+</head>
+<body>
+    <canvas id="mycanvas" width="1393" height="697" style="border:1px solid #000000"></canvas>
+</body>
+</html>
