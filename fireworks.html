@@ -8,7 +8,7 @@
             var mycanvas = document.getElementById('mycanvas');
             ctx = mycanvas.getContext('2d');
             
-            list=[];
+            //list=[];
             mycanvas.addEventListener('mousedown',onmousedown);
 
             
@@ -58,6 +58,8 @@
             
         function onmousedown(e)
         {
+            var list = new Array();
+            
             for(var i=0; i<100; i++)
                 list.push(new Ball(event.x, event.y));
 
