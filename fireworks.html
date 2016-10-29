@@ -6,10 +6,12 @@
     <script>
         window.onload = function(){
             var mycanvas = document.getElementById('mycanvas');
-            var ctx = mycanvas.getContext('2d');
+            ctx = mycanvas.getContext('2d');
             
+            list=[];
+            mycanvas.addEventListener('mousedown',onmousedown);
                 
-            //S=V0t+1/2gt^2
+            /*//S=V0t+1/2gt^2
             var vx=50;//-500~500
             var vy=0;//-500~500
             var g=9.8;
@@ -20,7 +22,7 @@
                 ctx.arc(150+vx*t, 150+vy*t+0.5*g*t*t,5,0,Math.PI*2);
                 ctx.closePath();
                 ctx.fill();
-            }
+            }*/
             
         };
         function Ball(x,y)
@@ -63,10 +65,15 @@
                 this.draw();
                 
             }
+        function onmousedown(e)
+        {
+            list.push(new Ball(event.x, event.y));
+            console.log("onmousedown()");
+        }
         
     </script>
 </head>
 <body>
     <canvas id="mycanvas" width="1393" height="697" style="border:1px solid #000000"></canvas>
 </body>
-</html>
+</html>s
