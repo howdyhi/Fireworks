@@ -7,6 +7,16 @@
         window.onload = function(){
             var mycanvas = document.getElementById('mycanvas');
             var ctx = mycanvas.getContext('2d');
+            
+            function Ball()
+            {
+                this.x=x;
+                this.y=y;
+                this.vx;
+                this.vy;
+                this.color;
+            }
+            
             /*ctx.beginPath();
             ctx.arc(150,150,5,0,Math.PI*2);
             ctx.closePath();
