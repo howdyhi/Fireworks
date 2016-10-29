@@ -11,7 +11,7 @@
             mycanvas.addEventListener('mousedown', onmousedown);
         };
 
-        function Ball(x, y) {
+        function Particle(x, y) {
             this.x = x;
             this.y = y;
             this.r = 2;
@@ -46,8 +46,8 @@
 
         function onmousedown(e) {
             var list = new Array();
-            for (var i = 0; i < 100; i++) //generate 100 balls
-                list.push(new Ball(event.x, event.y));
+            for (var i = 0; i < 100; i++) //generate 100 particles
+                list.push(new Particle(event.x, event.y));
             var stop = false;
             var t = 0;
             setInterval(function () {
