@@ -9,8 +9,6 @@
             ctx = mycanvas.getContext('2d');
             
             mycanvas.addEventListener('mousedown',onmousedown);
-
-            
         };
         function Ball(x,y)
             {
@@ -21,7 +19,6 @@
                 this.vx;
                 this.vy;
                 this.g=9.8;
-                //this.g=-2;
                 
                 this.randomInit = function(){
                     var r=Math.floor(Math.random()*255);
@@ -29,24 +26,9 @@
                     var b=Math.floor(Math.random()*255);
                     var color="rgb("+r+","+g+","+b+")";
                     this.color=color;
-                    
-                    //this.vx=Math.floor((Math.random()*1000)-500); //-500~500
-                    //this.vy=Math.floor((Math.random()*1000)-500);//-500~500
-                    
-                    //this.vx=Math.floor((Math.random()*300)-150); //-500~500
-                    //this.vy=Math.floor((Math.random()*300)-150);//-500~500
-                    
-                    /*this.vx=10/5;
-                    this.vy=-25/5;*/
-                    
-                    //this.vx=5;
-                    //this.vy=5;
-                    
+
                     this.vx=-10+Math.random()*20;
                     this.vy=-12+Math.random()*17;
-                    
-                    //this.vx=-5+Math.random()*10;
-                    //this.vy=Math.random()*10;
 
                 };
                 this.randomInit();
@@ -67,9 +49,7 @@
                 }
                 this.draw();
                 };
-                
-                
-            
+                           
         function onmousedown(e)
         {
             var list = new Array();
@@ -85,25 +65,18 @@
                     for(var i=0; i<100; i++){
                         list[i].draw();
                         list[i].move(t);
-
                     }
                     t+=0.05;
-                    console.log("t: "+t);
                     if(t>=1.7&&t<=1.9){
                         ctx.clearRect(0,0,1393,697);
-                        //stop=true;
-
                     }
                     if(t>=2.1) {
                         ctx.clearRect(0,0,1393,697);
                         stop=true;
                     }
                 }
-            },15);//speed
-            
-            
+            },15);//speed         
         }
-        
     </script>
 </head>
 <body>
