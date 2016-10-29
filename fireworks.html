@@ -50,43 +50,28 @@
                 this.randomInit();
                 
                 this.draw = function(){
-                    //this.t+=0.1;
-                    //S=V0t+1/2gt^2
-                    //var vx=50;//-500~500
-                    //var vy=0;//-500~500
-                    //var g=9.8;
-                    //var x=v0*t;
-                    //var y=-v0*t+0.5+g*t*t;
-                    //for(var t=0; t<1;t+=0.1){
                         ctx.fillStyle=this.color;
                         ctx.beginPath();
-                        //ctx.arc(this.x+this.vx*t, this.y+this.vy*t+0.5*this.g*t*t,5,0,Math.PI*2);
-                        //ctx.arc(this.x+this.vx*this.t, this.y+this.vy*this.t+0.5*this.g*this.t*this.t,5,0,Math.PI*2);
                         ctx.arc(this.x, this.y,this.r,0,Math.PI*2);
                         ctx.closePath();
                         ctx.fill();
-                    //}
+                    }
                     
                     this.move=function(t)
                     {
                         //S=V0t+1/2gt^2
-                        //this.x+=this.vx*t;
-                        //this.y+=this.vy*t+(this.g*t*t)/2;
-                        this.x=this.x+this.vx*t;
-                        this.y=this.y+this.vy*t+(this.g*t*t)/2;
+                        this.x+=this.vx*t;
+                        this.y+=this.vy*t+(this.g*t*t)/2;
                     }
                 };
                 this.draw();
-                //this.move();
                 
             }
         function onmousedown(e)
         {
             for(var i=0; i<100; i++)
                 list.push(new Ball(event.x, event.y));
-            
-            //for(var i=0; i<100; i++)
-            //setInterval(list[i].move(10), 32);
+
             var t=0;
             setInterval(function(){
                 for(var i=0; i<100; i++){
